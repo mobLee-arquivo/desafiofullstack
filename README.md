@@ -1,4 +1,4 @@
-# Desafio para a vaga de Analista de Testes
+# Desafio para a vaga de Desenvolvedor Fullstack
 Se você recebeu esse link, provavelmente você se candidatou para a vaga de Fullstack do time de produto da mobLee. Então, primeiramente, parabéns por ter sido selecionado =)
 
 O objetivo desse desafio é identificar a qualidade do código, entender um pouco da sua lógica de programação e capturar a forma com a qual você organiza essas ideias.
