@@ -9,10 +9,10 @@ const Home: React.FC = () => {
    
   return <div className={classes.root}>
     <Header/>
-    <section className={classes.mainSection}>
+    <div className={classes.mainSection}>
         <Typography variant="h3">StackOverflow</Typography>
         <SearchForm/>
-    </section>
+    </div>
     <Footer />
   </div>
 };

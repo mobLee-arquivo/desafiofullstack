@@ -2,11 +2,10 @@ import { Button, Card, CardContent, TextField, Typography } from '@material-ui/c
 import { Formik, Form, Field } from 'formik';
 // @ts-ignore
 import { FormikTextField } from 'formik-material-fields';
-import { gql } from '@apollo/client';
-
 import React from 'react';
 import * as Yup from 'yup';
 import useStyles from '../hooks/useStyles';
+
 
 const FormSchema = Yup.object().shape({
     tag: Yup.string().required("Campo obrigatório"),
@@ -22,18 +21,46 @@ const initialData = {
     score: ''
 }
 
+
 const SearchForm: React.FC = () => {
+
+  const [questions, setQuestions] = React.useState<any[]>([]);
   const classes = useStyles();
 
-  return <Card className={classes.search_form_card}>
+
+  const handleSubmit = async (values: any) => {
+    fetch('http://localhost:5000/graphql', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        query: `
+        { fetchQuestions(tag: "${values.tag}", sort: "${values.sort}", limit: "${values.limit}", score: "${values.score}"){
+        title
+          link
+          question_id
+          owner {
+            user_id
+            display_name
+          }
+        }
+        }
+        `
+      })
+    })
+    .then( res => res.json())
+    .then( res => {
+      setQuestions(res.data.fetchQuestions)
+    });
+  }
+
+  return <> 
+  <Card className={classes.search_form_card}>
       <CardContent>
           <Typography>Buscar na API</Typography>
           <Formik
             initialValues={initialData}
             validationSchema={FormSchema}
-            onSubmit={(values) => {
-                console.log(values)
-            }}>
+            onSubmit={handleSubmit}>
               {({values, handleChange, handleSubmit}): React.ReactElement => (
                  <Form onSubmit={handleSubmit}>
                  <div>
@@ -82,7 +109,15 @@ const SearchForm: React.FC = () => {
 
           </Formik>
       </CardContent>
-  </Card>;
+  </Card>
+   <div>
+   {questions && questions.map( (el, indx) => <Card style={{marginBottom: 10}} key={indx}>
+        <CardContent>
+          <Typography variant="h4"><a href={el.link}>{el.title}</a></Typography>
+        </CardContent>
+      </Card>)}
+   </div>
+  </>;
 }
 
 export default SearchForm;
