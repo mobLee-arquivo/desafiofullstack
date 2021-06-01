@@ -1,0 +1,26 @@
+ype Query {
+  fetchQuestions(
+    tag: String!
+    sort: String!
+    limit: String!
+    order: String!
+  ): [Question!]!
+  fetchQuestion(question_id: String!): Question
+}
+
+type Question {
+  title: String!
+  link: String!
+  question_id: Float!
+  tags: [String!]!
+  owner: Owner!
+}
+
+type Owner {
+  reputation: Float!
+  user_id: Float!
+  user_type: String!
+  profile_image: String!
+  display_name: String!
+  link: String!
+}
