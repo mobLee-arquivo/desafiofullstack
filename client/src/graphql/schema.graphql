@@ -1,4 +1,4 @@
-ype Query {
+type Query {
   fetchQuestions(
     tag: String!
     sort: String!
