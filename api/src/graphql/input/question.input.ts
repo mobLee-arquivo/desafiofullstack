@@ -5,10 +5,13 @@ import 'reflect-metadata';
 class QuestionInput {
   @Field((type) => String)
   tag!: string;
+
   @Field((type) => String)
   sort?: string;
+
   @Field((type) => String)
   limit?: string;
+
   @Field((type) => String)
   order?: string;
 }
