@@ -8,6 +8,7 @@
     "@typescript-eslint/eslint-plugin": "^4.25.0",
     "@typescript-eslint/parser": "^4.25.0",
     "apollo-server-express": "^2.25.0",
+    "class-validator": "^0.13.1",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "eslint": "^7.27.0",

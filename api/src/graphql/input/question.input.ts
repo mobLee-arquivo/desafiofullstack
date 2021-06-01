@@ -13,7 +13,7 @@ class QuestionInput {
   limit?: string;
 
   @Field((type) => String)
-  order?: string;
+  score?: string;
 }
 
 export default QuestionInput;
